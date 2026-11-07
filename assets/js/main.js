@@ -245,12 +245,17 @@
     const tl = gsap.timeline({ scrollTrigger: st });
     tl.fromTo(rootEl, { "--p": 0 }, { "--p": 1, duration: 1, ease: "none" }, 0);
     if (opts && opts.wipe === "8") {
+      /* Wipe IN only: the top edge (y1..y4) sweeps 100% -> 0% during the
+         first ~45% of the pin span, then the section HOLDS full-screen.
+         The bottom edge (y5..y8) stays at 100% so the wrapper always
+         covers the full viewport — the next section wipes in OVER this
+         one. (Animating y5..y8 to 0% collapses the polygon to a band
+         and leaves the page background showing through the middle.) */
+      gsap.set(wrapper, { "--y5": "100%", "--y6": "100%", "--y7": "100%", "--y8": "100%" });
       const order = opts.mirror
         ? ["--y4", "--y3", "--y2", "--y1"] : ["--y1", "--y2", "--y3", "--y4"];
       order.forEach((v, i) => tl.fromTo(wrapper,
-        { [v]: "100%" }, { [v]: "0%", duration: 0.62, ease: "none" }, i * 0.11));
-      ["--y5", "--y6", "--y7", "--y8"].forEach((v, i) =>
-        tl.fromTo(wrapper, { [v]: "100%" }, { [v]: "0%", duration: 0.4, ease: "none" }, 0.62 + i * 0.05));
+        { [v]: "100%" }, { [v]: "0%", duration: 0.32, ease: "none" }, i * 0.045));
     } else if (opts && opts.wipe === "flat") {
       tl.fromTo(wrapper, { "--y1": "100%" }, { "--y1": "0%", duration: 0.9, ease: "none" }, 0);
     } else if (opts && opts.wipe === "footer") {
