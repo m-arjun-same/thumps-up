@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" data-template="work">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thumps Up — Taste the Thunder | Campaign Films</title>
+<meta name="description" content="The Thumps Up advertising campaign. Thunder Ride, Born to Thunder, Thunder Strikes — films, posters and the full collection. Taste the Thunder.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ce1f1a'/%3E%3Cpath d='M17 3 L7 18 h6 L11 29 L25 12 h-7 z' fill='%23eee3d1'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Playfair+Display:ital,wght@1,500;1,600&family=Archivo:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ===== SVG DEFS (own shapes: bolt, arrows, masks) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="ic-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-2 8 9-12h-6z" fill="currentColor"/></symbol>
+    <symbol id="ic-arrow" viewBox="0 0 24 24"><path d="M3 11h14.2l-5.6-5.6L13 4l8 8-8 8-1.4-1.4 5.6-5.6H3z" fill="currentColor"/></symbol>
+    <symbol id="ic-arrow-big" viewBox="0 0 100 100"><path d="M6 44h70L58 26l8-8 26 26-26 26-8-8 18-18H6z" fill="currentColor"/></symbol>
+    <symbol id="ic-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="currentColor"/></symbol>
+    <symbol id="ic-pause" viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<!-- ===== PRELOADER ===== -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader__base"></div>
+  <div class="preloader__bg" id="preloaderBg"></div>
+  <div class="preloader__logo" id="preloaderLogo"><span>THUMPS</span><span>UP</span></div>
+  <div class="preloader__row">
+    <span class="preloader__text" id="preloaderText">Loading</span>
+    <span class="preloader__text preloader__progress" id="preloaderProgress">0%</span>
+  </div>
+</div>
+
+<!-- ===== CUSTOM CURSOR ===== -->
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor__dot"></div>
+  <div class="cursor__disc" id="cursorDisc">
+    <svg class="cursor__icon cursor__icon--play"><use href="#ic-play"/></svg>
+    <svg class="cursor__icon cursor__icon--pause"><use href="#ic-pause"/></svg>
+    <span class="cursor__label" id="cursorLabel">PLAY</span>
+  </div>
+</div>
+
+<!-- ===== SIDEBAR / NAVBAR ===== -->
+<header class="navbar" id="navbar">
+  <div class="navbar__togglebar" id="togglebar" style="--show-p:1;--scroll-p:0">
+    <a class="navbar__logo" href="#top" data-scrollto="#top" aria-label="Thumps Up — home">
+      <span class="navbar__logo-word">THUMPS</span>
+      <span class="navbar__logo-word">UP</span>
+      <svg class="navbar__logo-bolt"><use href="#ic-bolt"/></svg>
+    </a>
+    <button class="navbar__toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <span class="navbar__toggle-line"></span>
+      <span class="navbar__toggle-line"></span>
+    </button>
+    <span class="navbar__tip">scroll for more</span>
+  </div>
+
+  <!-- ===== FULL-SCREEN MENU ===== -->
+  <div class="navbar__wrapper" id="menuWrapper" aria-hidden="true">
+    <div class="navbar__bg"></div>
+    <div class="navbar__boxes">
+      <nav class="navbar__box navbar__box--left">
+        <ul class="navbar__main">
+          <li><span class="navbar__link-clip"><a class="navbar__link is-active" href="#film-hero" data-scrollto="#film-hero"><svg class="navbar__link-arrow"><use href="#ic-arrow"/></svg>Film</a></span></li>
+          <li><span class="navbar__link-clip"><a class="navbar__link" href="#film-ride" data-scrollto="#film-ride"><svg class="navbar__link-arrow"><use href="#ic-arrow"/></svg>Campaigns</a></span></li>
+          <li><span class="navbar__link-clip"><a class="navbar__link" href="#collection" data-scrollto="#collection"><svg class="navbar__link-arrow"><use href="#ic-arrow"/></svg>Collection</a></span></li>
+          <li><span class="navbar__link-clip"><a class="navbar__link" href="#contact" data-scrollto="#contact"><svg class="navbar__link-arrow"><use href="#ic-arrow"/></svg>Join</a></span></li>
+        </ul>
+        <ul class="navbar__social">
+          <li><span class="navbar__link-clip"><a class="navbar__link navbar__link--social" href="#contact" data-scrollto="#contact">Instagram</a></span></li>
+          <li><span class="navbar__link-clip"><a class="navbar__link navbar__link--social" href="#contact" data-scrollto="#contact">YouTube</a></span></li>
+          <li><span class="navbar__link-clip"><a class="navbar__link navbar__link--social" href="#contact" data-scrollto="#contact">X</a></span></li>
+        </ul>
+      </nav>
+      <div class="navbar__box navbar__box--right">
+        <img src="assets/media/menu-crew.jpg" alt="Behind the scenes of a Thumps Up campaign film shoot" fetchpriority="low">
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero sticky-root" id="film-hero" data-pin-spacing="1" data-pin="1.25" data-gap="100">
+    <div class="hero__wrapper sticky wipe-none">
+      <div class="hero__bg">
+        <video src="assets/media/hero-storm.mp4" poster="assets/media/poster-hero.jpg" autoplay muted playsinline loop preload="auto"></video>
+        <div class="hero__shade"></div>
+        <canvas class="vector-grid" data-color="rgba(206, 31, 26, 0.70)" aria-hidden="true"></canvas>
+      </div>
+      <h2 class="hero__wordmark split-text" data-anim-delay="0.55">THUMPS UP</h2>
+      <div class="hero__box">
+        <h1 class="hero__title split-text" data-anim-delay="0.5">Ready for<br>thunder?</h1>
+        <p class="hero__brand">Thumps Up — TV</p>
+      </div>
+      <div class="timezone-bar" data-timezone>
+        <span class="timezone-bar__block timezone-bar__block--time"><span class="tz-hour">--:--</span> <span class="tz-gmt">GMT</span></span>
+        <span class="timezone-bar__block timezone-bar__block--tag">Taste the Thunder</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED CAMPAIGNS (TRAILERS) ===== -->
+  <div class="trailers">
+
+    <section class="trailer sticky-root" id="film-ride" data-pin-spacing="2.25" data-pin="1.75">
+      <div class="trailer__wrapper sticky wipe">
+        <div class="trailer__bg">
+          <video src="assets/media/ride-a.mp4" poster="assets/media/poster-ride.jpg" autoplay muted playsinline loop preload="metadata"></video>
+          <div class="trailer__shade"></div>
+        </div>
+        <div class="trailer__video" data-cursor-zone="play">
+          <video src="assets/media/ride-b.mp4" poster="assets/media/poster-ride.jpg" playsinline preload="none"></video>
+        </div>
+        <div class="trailer__box">
+          <div class="trailer__content">
+            <div class="trailer__left">
+              <p class="trailer__subtitle">new film out now</p>
+              <h2 class="trailer__title">Thunder<br>Ride</h2>
+            </div>
+            <div class="trailer__right">
+              <p class="trailer__text">One rider, one mountain road, and a storm rolling in behind him. He does not slow down — he leans in. Thunder Ride is the film that kicked off the season: shot at dawn, ridden at full throttle, finished with a bolt.</p>
+              <button class="circle-play-bt" data-play-toggle aria-label="Play the Thunder Ride trailer">
+                <span class="circle-play-bt__circle"><svg><use href="#ic-arrow"/></svg></span>
+                <span class="circle-play-bt__label">play trailer</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="timezone-bar" data-timezone>
+          <span class="timezone-bar__block timezone-bar__block--time"><span class="tz-hour">--:--</span> <span class="tz-gmt">GMT</span></span>
+          <span class="timezone-bar__block timezone-bar__block--tag">Taste the Thunder</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="trailer sticky-root" id="film-born" data-pin-spacing="2.25" data-pin="1.75">
+      <div class="trailer__wrapper sticky wipe">
+        <div class="trailer__bg">
+          <video src="assets/media/born-paraglide.mp4" poster="assets/media/poster-born.jpg" autoplay muted playsinline loop preload="metadata"></video>
+          <div class="trailer__shade"></div>
+        </div>
+        <div class="trailer__video" data-cursor-zone="play">
+          <video src="assets/media/adventure.mp4" poster="assets/media/poster-born.jpg" playsinline preload="none"></video>
+        </div>
+        <div class="trailer__box">
+          <div class="trailer__content">
+            <div class="trailer__left">
+              <p class="trailer__subtitle">1 billion views</p>
+              <h2 class="trailer__title">Born to<br>Thunder</h2>
+            </div>
+            <div class="trailer__right">
+              <p class="trailer__text">Some people wait for the weather to clear. Ours run off the edge of a mountain into it. Born to Thunder follows flyers, climbers and storm-chasers who were never built for the ground — the most shared Thumps Up film ever made.</p>
+              <button class="circle-play-bt" data-play-toggle aria-label="Play the Born to Thunder trailer">
+                <span class="circle-play-bt__circle"><svg><use href="#ic-arrow"/></svg></span>
+                <span class="circle-play-bt__label">play trailer</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="timezone-bar" data-timezone>
+          <span class="timezone-bar__block timezone-bar__block--time"><span class="tz-hour">--:--</span> <span class="tz-gmt">GMT</span></span>
+          <span class="timezone-bar__block timezone-bar__block--tag">Taste the Thunder</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="trailer sticky-root" id="film-strikes" data-pin-spacing="2.25" data-pin="1.75">
+      <div class="trailer__wrapper sticky wipe">
+        <div class="trailer__bg">
+          <video src="assets/media/strikes-ocean.mp4" poster="assets/media/poster-strikes.jpg" autoplay muted playsinline loop preload="metadata"></video>
+          <div class="trailer__shade"></div>
+        </div>
+        <div class="trailer__video" data-cursor-zone="play">
+          <video src="assets/media/surf.mp4" poster="assets/media/poster-strikes.jpg" playsinline preload="none"></video>
+        </div>
+        <div class="trailer__box">
+          <div class="trailer__content">
+            <div class="trailer__left">
+              <p class="trailer__subtitle">award winning film</p>
+              <h2 class="trailer__title">Thunder<br>Strikes</h2>
+            </div>
+            <div class="trailer__right">
+              <p class="trailer__text">When the sea stands up, the thunder answers. Shot across one monsoon week on the open coast, Thunder Strikes puts surfers inside the biggest swells of the year — and took home the season's top honours for it.</p>
+              <button class="circle-play-bt" data-play-toggle aria-label="Play the Thunder Strikes trailer">
+                <span class="circle-play-bt__circle"><svg><use href="#ic-arrow"/></svg></span>
+                <span class="circle-play-bt__label">play trailer</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="timezone-bar" data-timezone>
+          <span class="timezone-bar__block timezone-bar__block--time"><span class="tz-hour">--:--</span> <span class="tz-gmt">GMT</span></span>
+          <span class="timezone-bar__block timezone-bar__block--tag">Taste the Thunder</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== COLLECTION ===== -->
+  <section class="collection" id="collection">
+    <div class="collection__wrapper">
+      <canvas class="vector-grid" data-color="rgba(206, 31, 26, 0.70)" aria-hidden="true"></canvas>
+      <header class="collection__header">
+        <h2 class="collection__title">The Thumps Up<br>Collection</h2>
+        <div class="collection__header-row">
+          <p class="collection__header-title">Dive in and feel the thunder</p>
+          <p class="collection__intro">A collection of campaigns built with nerve, weather and a dedication to never doing anything halfway.</p>
+        </div>
+      </header>
+      <div class="collection__list">
+        <a class="card" href="#film-ride" data-scrollto="#film-ride">
+          <figure class="card__figure"><img src="assets/media/poster-ride.jpg" alt="Thunder Ride campaign still — motorcycle on a mountain road" loading="lazy"><video src="assets/media/ride-a.mp4" muted playsinline loop preload="none"></video></figure>
+          <h3 class="card__title">Thunder Ride</h3>
+        </a>
+        <a class="card" href="#film-born" data-scrollto="#film-born">
+          <figure class="card__figure"><img src="assets/media/poster-born.jpg" alt="Born to Thunder campaign still — paraglider over mountains" loading="lazy"><video src="assets/media/born-paraglide.mp4" muted playsinline loop preload="none"></video></figure>
+          <h3 class="card__title">Born to Thunder</h3>
+        </a>
+        <a class="card" href="#film-strikes" data-scrollto="#film-strikes">
+          <figure class="card__figure"><img src="assets/media/poster-strikes.jpg" alt="Thunder Strikes campaign still — storm surf" loading="lazy"><video src="assets/media/strikes-ocean.mp4" muted playsinline loop preload="none"></video></figure>
+          <h3 class="card__title">Thunder Strikes</h3>
+        </a>
+        <a class="card" href="#film-hero" data-scrollto="#film-hero">
+          <figure class="card__figure"><img src="assets/media/poster-hero.jpg" alt="Taste the Thunder campaign still — lightning storm" loading="lazy"><video src="assets/media/hero-storm.mp4" muted playsinline loop preload="none"></video></figure>
+          <h3 class="card__title">Taste the Thunder</h3>
+        </a>
+        <a class="card" href="#collection" data-scrollto="#collection">
+          <figure class="card__figure"><img src="assets/media/tile-stormchasers.jpg" alt="Storm Chasers campaign still — lightning over the plains" loading="lazy"><video src="assets/media/storm-b.mp4" muted playsinline loop preload="none"></video></figure>
+          <h3 class="card__title">Storm Chasers</h3>
+        </a>
+        <a class="card" href="#collection" data-scrollto="#collection">
+          <figure class="card__figure"><img src="assets/media/tile-surf.jpg" alt="Surf the Storm campaign still — surfer in a barrel wave" loading="lazy"><video src="assets/media/surf.mp4" muted playsinline loop preload="none"></video></figure>
+          <h3 class="card__title">Surf the Storm</h3>
+        </a>
+        <a class="card" href="#collection" data-scrollto="#collection">
+          <figure class="card__figure"><img src="assets/media/tile-skate.jpg" alt="Street Thunder campaign still — skateboarder mid-trick" loading="lazy"><video src="assets/media/skate.mp4" muted playsinline loop preload="none"></video></figure>
+          <h3 class="card__title">Street Thunder</h3>
+        </a>
+        <a class="card" href="#collection" data-scrollto="#collection">
+          <figure class="card__figure"><img src="assets/media/tile-falls.jpg" alt="Falls of Fury campaign still — waterfall gorge" loading="lazy"><video src="assets/media/waterfall.mp4" muted playsinline loop preload="none"></video></figure>
+          <h3 class="card__title">Falls of Fury</h3>
+        </a>
+        <a class="card" href="#collection" data-scrollto="#collection">
+          <figure class="card__figure"><img src="assets/media/tile-desert.jpg" alt="Dust and Thunder campaign still — desert canyon road" loading="lazy"><video src="assets/media/desert-vid.mp4" muted playsinline loop preload="none"></video></figure>
+          <h3 class="card__title">Dust &amp; Thunder</h3>
+        </a>
+        <a class="card" href="#collection" data-scrollto="#collection">
+          <figure class="card__figure"><img src="assets/media/tile-adventure.jpg" alt="No Road Back campaign still — adventure athlete in wild terrain" loading="lazy"><video src="assets/media/adventure.mp4" muted playsinline loop preload="none"></video></figure>
+          <h3 class="card__title">No Road Back</h3>
+        </a>
+      </div>
+      <div class="timezone-bar timezone-bar--static" data-timezone>
+        <span class="timezone-bar__block timezone-bar__block--time"><span class="tz-hour">--:--</span> <span class="tz-gmt">GMT</span></span>
+        <span class="timezone-bar__block timezone-bar__block--tag">Taste the Thunder</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact sticky-root" id="contact" data-pin-spacing="2.25" data-pin="1.75">
+    <div class="contact__wrapper sticky wipe-flat">
+      <canvas class="vector-grid" data-color="rgba(206, 31, 26, 0.70)" aria-hidden="true"></canvas>
+      <div class="contact__list" id="contactList">
+        <article class="contact__item contact__item--red is-open" data-band>
+          <div class="contact__item-inner">
+            <div class="contact__content">
+              <div class="contact__text-wrapper">
+                <p class="contact__label">contact</p>
+                <p class="contact__sub">Get in contact with us</p>
+              </div>
+              <h2 class="contact__title">Contact</h2>
+              <svg class="contact__ic"><use href="#ic-arrow-big"/></svg>
+            </div>
+            <button class="rect-bt" data-open-form="contact" style="--color:var(--cream);--background-color:var(--black)">
+              <span class="rect-bt__wrapper"><svg class="rect-bt__ic"><use href="#ic-arrow"/></svg><span class="rect-bt__text">Contact us</span><svg class="rect-bt__ic"><use href="#ic-arrow"/></svg></span>
+            </button>
+          </div>
+        </article>
+        <article class="contact__item contact__item--blue" data-band>
+          <div class="contact__item-inner">
+            <div class="contact__content">
+              <div class="contact__text-wrapper">
+                <p class="contact__label">Pitch us</p>
+                <p class="contact__sub">Your ideas are welcome</p>
+              </div>
+              <h2 class="contact__title">Pitch us</h2>
+              <svg class="contact__ic"><use href="#ic-arrow-big"/></svg>
+            </div>
+            <button class="rect-bt" data-open-form="pitch" style="--color:var(--cream);--background-color:var(--black)">
+              <span class="rect-bt__wrapper"><svg class="rect-bt__ic"><use href="#ic-arrow"/></svg><span class="rect-bt__text">pitch us</span><svg class="rect-bt__ic"><use href="#ic-arrow"/></svg></span>
+            </button>
+          </div>
+        </article>
+        <article class="contact__item contact__item--orange" data-band>
+          <div class="contact__item-inner">
+            <div class="contact__content">
+              <div class="contact__text-wrapper">
+                <p class="contact__label">Join the campaign</p>
+                <p class="contact__sub">Want to face the thunder?</p>
+              </div>
+              <h2 class="contact__title">Join us</h2>
+              <svg class="contact__ic"><use href="#ic-arrow-big"/></svg>
+            </div>
+            <button class="rect-bt" data-open-form="join" style="--color:var(--cream);--background-color:var(--black)">
+              <span class="rect-bt__wrapper"><svg class="rect-bt__ic"><use href="#ic-arrow"/></svg><span class="rect-bt__text">Face the thunder</span><svg class="rect-bt__ic"><use href="#ic-arrow"/></svg></span>
+            </button>
+          </div>
+        </article>
+      </div>
+      <div class="timezone-bar" data-timezone>
+        <span class="timezone-bar__block timezone-bar__block--time"><span class="tz-hour">--:--</span> <span class="tz-gmt">GMT</span></span>
+        <span class="timezone-bar__block timezone-bar__block--tag">Taste the Thunder</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer sticky-root" data-pin-spacing="2.25" data-pin="0">
+    <div class="footer__wrapper sticky wipe-footer">
+      <canvas class="vector-grid" data-color="rgba(238, 227, 209, .3)" aria-hidden="true"></canvas>
+      <div class="footer__top">
+        <div class="footer__wordmark" aria-hidden="true"><span>THUMPS</span><span>UP</span></div>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <h3 class="footer__subtitle">Address</h3>
+            <p class="footer__address">Thumps Up Campaign Studio, Bandra West, Mumbai 400050, India</p>
+          </div>
+          <div class="footer__col">
+            <h3 class="footer__subtitle">Explore</h3>
+            <nav class="footer__nav">
+              <a href="#film-hero" data-scrollto="#film-hero">Film</a>
+              <a href="#film-ride" data-scrollto="#film-ride">Campaigns</a>
+              <a href="#collection" data-scrollto="#collection">Collection</a>
+              <a href="#contact" data-scrollto="#contact">Join</a>
+            </nav>
+          </div>
+          <div class="footer__col">
+            <h3 class="footer__subtitle">Follow us</h3>
+            <nav class="footer__nav">
+              <a href="#contact" data-scrollto="#contact">Instagram</a>
+              <a href="#contact" data-scrollto="#contact">YouTube</a>
+              <a href="#contact" data-scrollto="#contact">X</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div class="footer__mail">
+          <h3 class="footer__subtitle">Say hello</h3>
+          <button class="footer__mail-link" data-open-form="contact">hello@thumpsupcampaign.in</button>
+        </div>
+        <div class="footer__copyright">
+          <p>Copyright © Thumps Up Campaign 2026</p>
+          <a href="#top" data-scrollto="#top" class="footer__privacy">Privacy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<!-- ===== CONTACT FORMS OVERLAY ===== -->
+<div class="contact-forms" id="contactForms" aria-hidden="true">
+  <div class="contact-forms__bg" data-close-forms></div>
+  <div class="contact-forms__wrapper" id="contactFormsWrapper">
+    <form class="contact-form contact-form--red" data-form="contact" novalidate>
+      <button type="button" class="contact-form__close" data-close-forms aria-label="Close form">×</button>
+      <h2 class="contact-form__title">Thank you for reaching out</h2>
+      <p class="contact-form__text">Tell the campaign team what you need — a partnership, a screening, a thunder-sized idea for the brand. We read everything.</p>
+      <div class="contact-form__fields">
+        <div class="contact-form__field"><label for="f-contact-name">Your name</label><input id="f-contact-name" name="name" type="text" placeholder="Your name" autocomplete="name"></div>
+        <div class="contact-form__field"><label for="f-contact-email">Your email</label><input id="f-contact-email" name="email" type="email" placeholder="Email" autocomplete="email"></div>
+        <div class="contact-form__field"><label for="f-contact-msg">Message</label><textarea id="f-contact-msg" name="message" placeholder="Type here"></textarea></div>
+      </div>
+      <button type="submit" class="rect-bt" style="--color:var(--cream);--background-color:var(--black)">
+        <span class="rect-bt__wrapper"><svg class="rect-bt__ic"><use href="#ic-arrow"/></svg><span class="rect-bt__text">send</span><svg class="rect-bt__ic"><use href="#ic-arrow"/></svg></span>
+      </button>
+      <p class="contact-form__note" data-form-note></p>
+    </form>
+    <form class="contact-form contact-form--blue" data-form="pitch" novalidate hidden>
+      <button type="button" class="contact-form__close" data-close-forms aria-label="Close form">×</button>
+      <h2 class="contact-form__title">Pitch us your idea. We're eager to hear</h2>
+      <p class="contact-form__text">Got the next Thunder film in your head? A stunt, a place, a person the country needs to see? Pitch it — the boldest ideas win.</p>
+      <div class="contact-form__fields">
+        <div class="contact-form__field"><label for="f-pitch-name">Your name</label><input id="f-pitch-name" name="name" type="text" placeholder="Your name" autocomplete="name"></div>
+        <div class="contact-form__field"><label for="f-pitch-email">Your email</label><input id="f-pitch-email" name="email" type="email" placeholder="Email" autocomplete="email"></div>
+        <div class="contact-form__field"><label for="f-pitch-msg">Message</label><textarea id="f-pitch-msg" name="message" placeholder="Type here"></textarea></div>
+      </div>
+      <button type="submit" class="rect-bt" style="--color:var(--cream);--background-color:var(--black)">
+        <span class="rect-bt__wrapper"><svg class="rect-bt__ic"><use href="#ic-arrow"/></svg><span class="rect-bt__text">send</span><svg class="rect-bt__ic"><use href="#ic-arrow"/></svg></span>
+      </button>
+      <p class="contact-form__note" data-form-note></p>
+    </form>
+    <form class="contact-form contact-form--casting" data-form="join" novalidate hidden>
+      <button type="button" class="contact-form__close" data-close-forms aria-label="Close form">×</button>
+      <h2 class="contact-form__title">We're looking forward to hearing from you</h2>
+      <p class="contact-form__text">Riders, flyers, surfers, skaters, storm-chasers — if you live for the edge, you belong in the next film. Tell us what you do.</p>
+      <div class="contact-form__fields">
+        <div class="contact-form__field"><label for="f-join-name">Your name</label><input id="f-join-name" name="name" type="text" placeholder="Your name" autocomplete="name"></div>
+        <div class="contact-form__field"><label for="f-join-email">Your email</label><input id="f-join-email" name="email" type="email" placeholder="Email" autocomplete="email"></div>
+        <div class="contact-form__field"><label for="f-join-msg">Message</label><textarea id="f-join-msg" name="message" placeholder="Type here"></textarea></div>
+      </div>
+      <button type="submit" class="rect-bt" style="--color:var(--cream);--background-color:var(--black)">
+        <span class="rect-bt__wrapper"><svg class="rect-bt__ic"><use href="#ic-arrow"/></svg><span class="rect-bt__text">send</span><svg class="rect-bt__ic"><use href="#ic-arrow"/></svg></span>
+      </button>
+      <p class="contact-form__note" data-form-note></p>
+    </form>
+  </div>
+</div>
+
+<!-- ===== COOKIE CONSENT ===== -->
+<section class="cookieconsent" id="cookieConsent" aria-label="Cookie preferences">
+  <div class="cookieconsent__main" data-cookie-main>
+    <h3 class="cookieconsent__title">Cookie preferences</h3>
+    <p class="cookieconsent__text">We and our partners use cookies and other technologies to improve your experience, measure performance, and tailor marketing.</p>
+    <div class="cookieconsent__actions">
+      <button class="cookieconsent__btn cookieconsent__btn--accept" data-cookie-accept>Accept all</button>
+      <button class="cookieconsent__btn" data-cookie-decline>Decline</button>
+      <button class="cookieconsent__btn cookieconsent__btn--link" data-cookie-manage>Manage preferences</button>
+    </div>
+  </div>
+  <div class="cookieconsent__prefs" data-cookie-prefs hidden>
+    <h3 class="cookieconsent__title">Cookie preferences</h3>
+    <div class="cookieconsent__item"><div><h4>Essential</h4><p>Essential cookies enable basic functions and are necessary for the proper function of the website.</p></div><span class="cookieconsent__switch is-on is-locked"></span></div>
+    <div class="cookieconsent__item"><div><h4>Statistics</h4><p>Statistics cookies collect information anonymously to help us understand how visitors use the website.</p></div><button class="cookieconsent__switch" data-cookie-toggle aria-label="Toggle statistics cookies"></button></div>
+    <div class="cookieconsent__item"><div><h4>External Media</h4><p>Content from video platforms and social media is blocked by default unless External Media cookies are accepted.</p></div><button class="cookieconsent__switch" data-cookie-toggle aria-label="Toggle external media cookies"></button></div>
+    <div class="cookieconsent__actions">
+      <button class="cookieconsent__btn cookieconsent__btn--accept" data-cookie-save>Save</button>
+      <button class="cookieconsent__btn" data-cookie-back>Back</button>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
