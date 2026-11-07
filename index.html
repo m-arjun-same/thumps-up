@@ -437,9 +437,17 @@
   </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/vendor/gsap.min.js"></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/js/vendor/lenis.min.js"></script>
+<script>
+/* Failsafe: never trap the visitor behind the preloader. If the main
+   script has not removed the loader within 7s, remove it here. */
+setTimeout(function () {
+  var p = document.getElementById("preloader");
+  if (p) { p.remove(); document.body.style.overflow = ""; }
+}, 7000);
+</script>
+<script src="assets/js/main.js?v=2"></script>
 </body>
 </html>

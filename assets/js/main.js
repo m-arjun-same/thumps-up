@@ -389,7 +389,7 @@
     .set(formsRoot, { visibility: "visible" })
     .to(".contact-forms__bg", { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 0)
     .to("#contactFormsWrapper", { x: "0%", duration: 0.75, ease: "power3.inOut" }, 0);
-  void formsTl;
+  void formsTl2;
   function openForm(name) {
     $$(".contact-form", formsRoot).forEach((f) => { f.hidden = f.dataset.form !== name; });
     formsOpen = true;
