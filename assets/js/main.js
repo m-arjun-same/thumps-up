@@ -1,4 +1,4 @@
-/* Thumps Up — Campaign Films. Own-code interaction engine.
+/* Videotheque — Indie Video & Vinyl. Own-code interaction engine.
 /* GSAP + ScrollTrigger + Lenis drive everything. */
 (function () {
   "use strict";
@@ -80,16 +80,16 @@
     splitAnims.push(tl);
   });
 
-  /* ---------- Clock bars (dossier §3.8 — mechanism kept, zone is the campaign's IST) ---------- */
+  /* ---------- Clock bars (dossier §3.8 — mechanism kept, zone is the shop's Los Angeles time) ---------- */
   const tzFmt = new Intl.DateTimeFormat("en-US", {
-    timeZone: "Asia/Kolkata", hour: "numeric", minute: "2-digit", hour12: true,
+    timeZone: "America/Los_Angeles", hour: "numeric", minute: "2-digit", hour12: true,
   });
   function tickClock() {
     const now = tzFmt.format(new Date());
     $$("[data-timezone]").forEach((bar) => {
       const h = $(".tz-hour", bar); const g = $(".tz-gmt", bar);
       if (h) h.textContent = now;
-      if (g) g.textContent = "IST"; // static "GMT" label overwritten, as in the reference
+      if (g) g.textContent = "LA"; // static "GMT" label overwritten, as in the reference
     });
     setTimeout(tickClock, 1000 - (Date.now() % 1000));
   }
@@ -118,7 +118,7 @@
       zone.addEventListener("pointerenter", () => {
         const trailer = zone.closest(".trailer");
         const playing = trailer && trailer.classList.contains("is-playing");
-        setCursor(playing ? "pause" : "play", playing ? "PAUSE" : "PLAY");
+        setCursor(playing ? "close" : "play", playing ? "CLOSE" : "VIEW");
       });
       zone.addEventListener("pointerleave", () => setCursor(null));
     });
@@ -223,7 +223,7 @@
 
   /* ---------- Trailer inline play / pause (dossier §4.3) ---------- */
   $$(".trailer").forEach((section) => {
-    const trailerVideo = $(".trailer__video video", section);
+    const trailerVideo = $(".trailer__video img, .trailer__video video", section);
     const layer = $(".trailer__video", section);
     const btn = $("[data-play-toggle]", section);
     const btnLabel = $(".circle-play-bt__label", btn);
@@ -232,18 +232,18 @@
       .to(section, { "--play-progress": 1, duration: 0.75, ease: "power3.inOut" }, 0)
       .to(layer, { opacity: 1, duration: 0.75, ease: "power3.inOut" }, 0)
       .to(topControls, { autoAlpha: 0, duration: 0.75, ease: "power3.inOut" }, 0)
-      .eventCallback("onComplete", () => { trailerVideo.play().catch(() => {}); })
+      .eventCallback("onComplete", () => { if (trailerVideo && typeof trailerVideo.play === "function") trailerVideo.play().catch(() => {}); })
       .eventCallback("onReverseComplete", () => {
-        try { trailerVideo.pause(); trailerVideo.currentTime = 0; } catch (e) {}
+        try { if (typeof trailerVideo.pause === "function") { trailerVideo.pause(); trailerVideo.currentTime = 0; } } catch (e) {}
         gsap.set(topControls, { autoAlpha: 1 });
       });
     function toggle() {
       playing = !playing;
       section.classList.toggle("is-playing", playing);
-      btnLabel.textContent = playing ? "pause" : "play trailer";
+      btnLabel.textContent = playing ? "close" : "see inside";
       if (playing) { trailerVideo.muted = false; playTl.timeScale(1).play(); }
       else playTl.timeScale(1.35).reverse();
-      if (document.activeElement === document.body) setCursor(playing ? "pause" : "play", playing ? "PAUSE" : "PLAY");
+      if (document.activeElement === document.body) setCursor(playing ? "close" : "play", playing ? "CLOSE" : "VIEW");
     }
     btn.addEventListener("click", (e) => { e.stopPropagation(); toggle(); });
     layer.addEventListener("click", () => { if (playing) toggle(); });
@@ -342,7 +342,7 @@
       setTimeout(() => {
         btn.removeAttribute("disabled");
         form.reset();
-        note.textContent = "Received — the thunder team will get back to you.";
+        note.textContent = "Received — the Videotheque crew will get back to you.";
       }, 700);
     });
     $$("input, textarea", form).forEach((input) =>
@@ -366,7 +366,7 @@
   function cookieSet(name, val) {
     document.cookie = name + "=" + encodeURIComponent(val) + "; max-age=" + 60 * 60 * 24 * 180 + "; path=/";
   }
-  if (cookieGet("cookie.thumpsup")) {
+  if (cookieGet("cookie.videotheque")) {
     consent.remove();
   } else {
     gsap.delayedCall(1.2, () => consent.classList.add("is-shown"));
@@ -375,7 +375,7 @@
     $("[data-cookie-back]", consent).addEventListener("click", () => { prefs.hidden = true; main.hidden = false; });
     $$("[data-cookie-toggle]", consent).forEach((sw) =>
       sw.addEventListener("click", () => sw.classList.toggle("is-on")));
-    const saveAndHide = (val) => { cookieSet("cookie.thumpsup", val); consent.classList.remove("is-shown"); };
+    const saveAndHide = (val) => { cookieSet("cookie.videotheque", val); consent.classList.remove("is-shown"); };
     $("[data-cookie-accept]", consent).addEventListener("click", () => saveAndHide("all"));
     $("[data-cookie-decline]", consent).addEventListener("click", () => saveAndHide("essential"));
     $("[data-cookie-save]", consent).addEventListener("click", () => {
