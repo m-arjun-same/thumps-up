@@ -116,6 +116,7 @@
   function bindCursorZones(scope) {
     $$("[data-cursor-zone]", scope).forEach((zone) => {
       zone.addEventListener("pointerenter", () => {
+        if (zone.getAttribute("data-cursor-zone") === "shelf") { setCursor("drag", "VIEW"); return; }
         const trailer = zone.closest(".trailer");
         const playing = trailer && trailer.classList.contains("is-playing");
         setCursor(playing ? "close" : "play", playing ? "CLOSE" : "VIEW");
@@ -124,10 +125,6 @@
     });
     $$(".contact-forms__bg, .contact-form__close", scope).forEach((el) => {
       el.addEventListener("pointerenter", () => setCursor("close", "CLOSE"));
-      el.addEventListener("pointerleave", () => setCursor(null));
-    });
-    $$(".collection__list", scope).forEach((el) => {
-      el.addEventListener("pointerenter", () => setCursor("drag", "VIEW"));
       el.addEventListener("pointerleave", () => setCursor(null));
     });
   }
@@ -249,24 +246,73 @@
     layer.addEventListener("click", () => { if (playing) toggle(); });
   });
 
-  /* ---------- Collection cards: hover video preview (dossier §5.3) ---------- */
-  $$(".card").forEach((card) => {
-    const vid = $(".card__figure video", card);
-    card.addEventListener("pointerenter", () => { if (vid) vid.play().catch(() => {}); });
-    card.addEventListener("pointerleave", () => { if (vid) { vid.pause(); } });
-  });
-
-  /* entrance fades for cards + collection header */
-  gsap.utils.toArray(".card").forEach((card, i) => {
-    gsap.fromTo(card, { y: 60, opacity: 0 }, {
-      y: 0, opacity: 1, duration: 0.9, ease: "power3.out", delay: (i % 2) * 0.08,
-      scrollTrigger: { trigger: card, start: "top 92%" },
+  /* ---------- Collection: the Shelf (interactive browser) ----------
+     One big cover on the rack + the titles as a shelf list. Tap or hover a
+     title and the cover swaps with the site's diagonal wipe (GSAP); left
+     alone, the shelf plays itself while the section is on screen. Lenis
+     keeps the page scroll untouched — all motion is inside the section. */
+  const shelfItems = $$("[data-shelf-item]");
+  const shelfImg = document.getElementById("shelfImg");
+  if (shelfItems.length && shelfImg) {
+    const capTitle = document.getElementById("shelfTitle");
+    const capText = document.getElementById("shelfText");
+    const capTag = document.getElementById("shelfTag");
+    shelfItems.forEach((item) => { const pre = new Image(); pre.src = item.dataset.img; });
+    let current = 0, userDriven = false, swapping = false;
+    const showShelf = (i) => {
+      if (i === current || swapping) return;
+      const item = shelfItems[i];
+      shelfItems.forEach((el, j) => {
+        el.classList.toggle("is-active", j === i);
+        el.setAttribute("aria-pressed", j === i ? "true" : "false");
+      });
+      current = i;
+      swapping = true;
+      gsap.timeline({ onComplete: () => { swapping = false; } })
+        .to(shelfImg, {
+          clipPath: "polygon(0 0, 100% 0, 100% 0, 100% 100%, 0 100%)",
+          duration: 0.45, ease: "power3.in",
+        })
+        .add(() => {
+          shelfImg.src = item.dataset.img;
+          shelfImg.alt = item.dataset.alt || "";
+          capTitle.textContent = item.dataset.title;
+          capText.textContent = item.dataset.text;
+          capTag.textContent = item.dataset.tag;
+        })
+        .fromTo(shelfImg,
+          { clipPath: "polygon(0 0, 0 0, 0 88%, 7% 100%, 0 100%)", scale: 1.05 },
+          { clipPath: "polygon(0 0, 100% 0, 100% 88%, 93% 100%, 0 100%)", scale: 1, duration: 0.65, ease: "power3.out" })
+        .fromTo([capTitle, capText, capTag],
+          { y: 26, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, ease: "power3.out", stagger: 0.07 }, "-=0.35");
+    };
+    shelfItems.forEach((item, i) => {
+      item.addEventListener("click", () => { userDriven = true; showShelf(i); });
+      item.addEventListener("pointerenter", () => {
+        if (window.matchMedia("(pointer:fine)").matches) { userDriven = true; showShelf(i); }
+      });
     });
-  });
-  gsap.fromTo(".collection__header", { y: 80, opacity: 0 }, {
-    y: 0, opacity: 1, duration: 1, ease: "power3.out",
-    scrollTrigger: { trigger: ".collection__header", start: "top 88%" },
-  });
+    let shelfVisible = false;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.setInterval(() => {
+      if (!userDriven && shelfVisible && !document.hidden && !reduceMotion) {
+        showShelf((current + 1) % shelfItems.length);
+      }
+    }, 3400);
+    new IntersectionObserver((entries) => {
+      shelfVisible = entries[0].isIntersecting;
+    }, { threshold: 0.25 }).observe(shelfImg.closest(".shelf"));
+    gsap.from(".shelf__stage", {
+      y: 70, opacity: 0, duration: 1, ease: "power3.out",
+      scrollTrigger: { trigger: ".shelf", start: "top 78%", once: true },
+    });
+    gsap.from(".shelf__item", {
+      x: 56, opacity: 0, duration: 0.7, ease: "power3.out", stagger: 0.06,
+      scrollTrigger: { trigger: ".shelf", start: "top 78%", once: true },
+    });
+  }
+
 
   /* ---------- Contact accordion (dossier §3.6) ---------- */
   const bands = $$("[data-band]");

@@ -210,47 +210,57 @@
           <p class="collection__intro">Independent, foreign, cult, classic, documentary, new release and rare cinema — to rent or to own — plus vinyl, VHS, posters, shirts and books.</p>
         </div>
       </header>
-      <div class="collection__list">
-        <a class="card" href="#film-ride" data-scrollto="#film-ride">
-          <figure class="card__figure"><img src="assets/media/ig-frontroom.jpg" alt="The front room at Videotheque, stocked for Halloween" loading="lazy"></figure>
-          <h3 class="card__title">The Front Room</h3>
-        </a>
-        <a class="card" href="#film-born" data-scrollto="#film-born">
-          <figure class="card__figure"><img src="assets/media/ig-madonna-vhs.jpg" alt="A Madonna music VHS box at Videotheque" loading="lazy"></figure>
-          <h3 class="card__title">Music VHS</h3>
-        </a>
-        <a class="card" href="#film-strikes" data-scrollto="#film-strikes">
-          <figure class="card__figure"><img src="assets/media/ig-rentsign.jpg" alt="The Videotheque sidewalk sign — Come Rent Movies" loading="lazy"></figure>
-          <h3 class="card__title">Come Rent Movies</h3>
-        </a>
-        <a class="card" href="#film-hero" data-scrollto="#film-hero">
-          <figure class="card__figure"><img src="assets/media/ig-neon.jpg" alt="The neon VIDEO STORE sign inside Videotheque" loading="lazy"></figure>
-          <h3 class="card__title">Neon Nights</h3>
-        </a>
-        <a class="card" href="#collection" data-scrollto="#collection">
-          <figure class="card__figure"><img src="assets/media/ig-phantom.jpg" alt="Cult and horror merch on the rack at Videotheque" loading="lazy"></figure>
-          <h3 class="card__title">Cult & Horror</h3>
-        </a>
-        <a class="card" href="#collection" data-scrollto="#collection">
-          <figure class="card__figure"><img src="assets/media/ig-cassette.jpg" alt="Vinyl-era finds — a portable cassette player at Videotheque" loading="lazy"></figure>
-          <h3 class="card__title">Vinyl & Cassettes</h3>
-        </a>
-        <a class="card" href="#collection" data-scrollto="#collection">
-          <figure class="card__figure"><img src="assets/media/ig-buysell.jpg" alt="The buy and sell A-frame outside Videotheque" loading="lazy"></figure>
-          <h3 class="card__title">Buy · Sell</h3>
-        </a>
-        <a class="card" href="#collection" data-scrollto="#collection">
-          <figure class="card__figure"><img src="assets/media/ig-pretenders-vhs.jpg" alt="A Pretenders VHS close-up — a staff pick at Videotheque" loading="lazy"></figure>
-          <h3 class="card__title">Staff Picks</h3>
-        </a>
-        <a class="card" href="#collection" data-scrollto="#collection">
-          <figure class="card__figure"><img src="assets/media/ig-microcinema.jpg" alt="A microcinema screening night poster at Videotheque" loading="lazy"></figure>
-          <h3 class="card__title">Screenings</h3>
-        </a>
-        <a class="card" href="#collection" data-scrollto="#collection">
-          <figure class="card__figure"><img src="assets/media/ig-cat.jpg" alt="Jules, the Videotheque shop cat, on his cushion" loading="lazy"></figure>
-          <h3 class="card__title">Jules the Shop Cat</h3>
-        </a>
+      <div class="shelf">
+        <div class="shelf__stage" data-cursor-zone="shelf">
+          <img class="shelf__img" id="shelfImg" src="assets/media/ig-frontroom.jpg" alt="The front room at Videotheque, stocked for Halloween">
+          <div class="shelf__caption">
+            <h3 class="shelf__caption-title" id="shelfTitle">The Front Room</h3>
+            <p class="shelf__caption-text" id="shelfText">Horror shirts on the rack, Halloween VHS in the case, Dario Argento in 4K behind glass — the first thing you hit when you walk in.</p>
+            <p class="shelf__caption-tag" id="shelfTag">In the shop</p>
+          </div>
+        </div>
+        <div class="shelf__items" role="group" aria-label="Browse the collection">
+        <button class="shelf__item is-active" data-shelf-item data-img="assets/media/ig-frontroom.jpg" data-alt="The front room at Videotheque, stocked for Halloween" data-title="The Front Room" data-tag="In the shop" data-text="Horror shirts on the rack, Halloween VHS in the case, Dario Argento in 4K behind glass — the first thing you hit when you walk in." aria-pressed="true">
+          <span class="shelf__name">The Front Room</span>
+          <span class="shelf__tag">In the shop</span>
+        </button>
+        <button class="shelf__item" data-shelf-item data-img="assets/media/ig-madonna-vhs.jpg" data-alt="A Madonna music VHS box at Videotheque" data-title="Music VHS" data-tag="Fresh drop" data-text="A dreamy set of music VHS hit the floor — Madonna, the Pretenders and more, straight out of the tape era." aria-pressed="false">
+          <span class="shelf__name">Music VHS</span>
+          <span class="shelf__tag">Fresh drop</span>
+        </button>
+        <button class="shelf__item" data-shelf-item data-img="assets/media/ig-rentsign.jpg" data-alt="The Videotheque sidewalk sign — Come Rent Movies" data-title="Come Rent Movies" data-tag="Rentals" data-text="The sign on Figueroa says it plainly. Rent the rare stuff by the night, from a catalogue 40,000 titles deep." aria-pressed="false">
+          <span class="shelf__name">Come Rent Movies</span>
+          <span class="shelf__tag">Rentals</span>
+        </button>
+        <button class="shelf__item" data-shelf-item data-img="assets/media/ig-neon.jpg" data-alt="The neon VIDEO STORE sign inside Videotheque" data-title="Neon Nights" data-tag="After dark" data-text="The neon comes on and the shop turns into a cinema lobby — event nights, portraits and screenings under the sign." aria-pressed="false">
+          <span class="shelf__name">Neon Nights</span>
+          <span class="shelf__tag">After dark</span>
+        </button>
+        <button class="shelf__item" data-shelf-item data-img="assets/media/ig-phantom.jpg" data-alt="Cult and horror merch on the rack at Videotheque" data-title="Cult & Horror" data-tag="Merch" data-text="Phantom of the Paradise, Suspiria, Eraserhead — cult and horror shirts, totes and gifts, stocked heavy for the season." aria-pressed="false">
+          <span class="shelf__name">Cult & Horror</span>
+          <span class="shelf__tag">Merch</span>
+        </button>
+        <button class="shelf__item" data-shelf-item data-img="assets/media/ig-cassette.jpg" data-alt="Vinyl-era finds — a portable cassette player at Videotheque" data-title="Vinyl & Cassettes" data-tag="Records" data-text="Records to dig, tapes to play, and the odd Walkman in working order. Physical media, kept physical." aria-pressed="false">
+          <span class="shelf__name">Vinyl & Cassettes</span>
+          <span class="shelf__tag">Records</span>
+        </button>
+        <button class="shelf__item" data-shelf-item data-img="assets/media/ig-buysell.jpg" data-alt="The buy and sell A-frame outside Videotheque" data-title="Buy · Sell" data-tag="Trade" data-text="Bring a stack, leave with a stack. The shop buys and sells films and records every day." aria-pressed="false">
+          <span class="shelf__name">Buy · Sell</span>
+          <span class="shelf__tag">Trade</span>
+        </button>
+        <button class="shelf__item" data-shelf-item data-img="assets/media/ig-pretenders-vhs.jpg" data-alt="A Pretenders VHS close-up — a staff pick at Videotheque" data-title="Staff Picks" data-tag="The crew's wall" data-text="The recommended wall at the front of the store is the crew's taste on display — start there when you don't know what to watch." aria-pressed="false">
+          <span class="shelf__name">Staff Picks</span>
+          <span class="shelf__tag">The crew's wall</span>
+        </button>
+        <button class="shelf__item" data-shelf-item data-img="assets/media/ig-microcinema.jpg" data-alt="A microcinema screening night poster at Videotheque" data-title="Screenings" data-tag="Microcinema" data-text="Horror shorts, comedy inspired by cinema, one-night-only programmes in the microcinema — seen only here, seen only once." aria-pressed="false">
+          <span class="shelf__name">Screenings</span>
+          <span class="shelf__tag">Microcinema</span>
+        </button>
+        <button class="shelf__item" data-shelf-item data-img="assets/media/ig-cat.jpg" data-alt="Jules, the Videotheque shop cat, on his cushion" data-title="Jules the Shop Cat" data-tag="Resident" data-text="Every great video store has a critic. Ours is Jules — find him on his cushion and take his silence as approval." aria-pressed="false">
+          <span class="shelf__name">Jules the Shop Cat</span>
+          <span class="shelf__tag">Resident</span>
+        </button>
+        </div>
       </div>
       <div class="timezone-bar timezone-bar--static" data-timezone>
         <span class="timezone-bar__block timezone-bar__block--time"><span class="tz-hour">--:--</span> <span class="tz-gmt">LA</span></span>

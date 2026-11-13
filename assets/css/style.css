@@ -316,7 +316,7 @@ main{display:block;position:relative}
 @media (min-width:1025px){.rect-bt:hover .rect-bt__text{translate:calc(1.3125rem + .75rem) 0}}
 .rect-bt[disabled]{opacity:.6;pointer-events:none}
 
-/* ---------- Collection (dossier §3.5) ---------- */
+/* ---------- Collection — the Shelf (interactive) ---------- */
 .collection{position:relative;background:#eee3d1;color:#171208;z-index:2}
 .collection__wrapper{position:relative;padding:5rem var(--global-padding)}
 @media (min-width:1025px){
@@ -341,30 +341,49 @@ main{display:block;position:relative}
 @media (min-width:1025px){.collection__header-title{font-size:3.25rem}}
 .collection__intro{font-size:1rem;line-height:1.2;letter-spacing:-.02em;max-width:24.5625rem}
 @media (min-width:1025px){.collection__intro{font-size:1.375rem;margin-left:auto}}
-.collection__list{display:grid;grid-template-columns:1fr;gap:3rem;position:relative;z-index:1}
-@media (min-width:1025px){.collection__list{grid-template-columns:1fr 1fr;gap:3rem;row-gap:6.25rem}}
-.card{display:block}
-.card__figure{
-  position:relative;aspect-ratio:834/469;overflow:hidden;background:#d8cbb2;
-  clip-path:polygon(0 0,100% 0,100% 76%,86% 100%,0 100%);
-  transition:clip-path .5s var(--easing);
+
+.shelf{display:flex;flex-direction:column;gap:2.5rem;position:relative;z-index:1}
+@media (min-width:1025px){.shelf{flex-direction:row;gap:4rem;align-items:flex-start}}
+.shelf__stage{flex:1.35;min-width:0}
+.shelf__img{
+  width:100%;aspect-ratio:4/3.1;object-fit:cover;background:#d8cbb2;
+  clip-path:polygon(0 0,100% 0,100% 88%,93% 100%,0 100%);
 }
-.card:hover .card__figure{clip-path:polygon(0 0,100% 0,100% 100%,100% 100%,0 100%)}
-.card__figure img,.card__figure video{width:100%;height:100%;object-fit:cover;transition:scale .3s cubic-bezier(.165,.84,.44,1)}
-.card__figure video{position:absolute;inset:0;opacity:0;transition:opacity .35s var(--easing),scale .3s cubic-bezier(.165,.84,.44,1)}
-.card:hover .card__figure img{scale:1.05}
-.card:hover .card__figure video{opacity:1;scale:1.05}
-.card__title{
-  margin-top:1rem;
-  font-family:var(--font-display);font-weight:500;text-transform:uppercase;
-  letter-spacing:-.02em;line-height:.85;color:#171208;font-size:1.5rem;
-  display:inline-block;
-  background:linear-gradient(currentColor,currentColor) left bottom / 0% 2px no-repeat;
-  padding-bottom:.35rem;
-  transition:background-size .5s cubic-bezier(.45,0,.55,1);
+@media (min-width:1025px){.shelf__img{aspect-ratio:4/3.35}}
+.shelf__caption{margin-top:1.75rem;max-width:38rem}
+.shelf__caption-title{
+  font-family:var(--font-display);font-weight:600;text-transform:uppercase;
+  letter-spacing:-.02em;line-height:.9;color:#171208;font-size:2.5rem;
 }
-@media (min-width:1025px){.card__title{font-size:2.25rem;margin-top:1.5rem}}
-.card:hover .card__title{background-size:100% 2px}
+@media (min-width:1025px){.shelf__caption-title{font-size:4rem}}
+.shelf__caption-text{font-size:1.0625rem;line-height:1.35;letter-spacing:-.01em;margin-top:.9rem}
+@media (min-width:1025px){.shelf__caption-text{font-size:1.375rem}}
+.shelf__caption-tag{
+  display:inline-block;margin-top:1.1rem;background:var(--vtq-red);color:var(--cream);
+  font-family:var(--font-display);font-weight:500;text-transform:uppercase;letter-spacing:-.01em;
+  font-size:1rem;line-height:1;padding:.6rem .9rem;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - .5rem),calc(100% - .5rem) 100%,0 100%);
+}
+.shelf__items{flex:1;display:flex;flex-direction:column;min-width:0}
+.shelf__item{
+  display:flex;align-items:baseline;gap:1rem;text-align:left;width:100%;
+  padding:.85rem 1rem;margin:0 -1rem;width:calc(100% + 2rem);
+  transition:translate .35s var(--ease-hover),background .35s var(--ease-hover),color .35s var(--ease-hover);
+}
+.shelf__item:hover{translate:1rem 0}
+.shelf__item:focus-visible{outline:3px solid var(--vtq-red);outline-offset:2px}
+.shelf__name{
+  font-family:var(--font-display);font-weight:600;text-transform:uppercase;
+  letter-spacing:-.02em;line-height:.95;color:#171208;font-size:1.625rem;
+  transition:color .3s var(--ease-hover);
+}
+@media (min-width:1025px){.shelf__name{font-size:2.375rem}}
+.shelf__item:hover .shelf__name{color:#b0160f}
+.shelf__item.is-active{background:#e2d3b8}
+.shelf__item.is-active .shelf__name{color:#b0160f}
+.shelf__tag{
+  margin-left:auto;flex:none;font-size:.9375rem;letter-spacing:-.01em;opacity:.65;
+}
 
 /* ---------- Contact accordion (dossier §3.6) ---------- */
 .contact__wrapper{background:linear-gradient(180deg,#0a1735 0%,#050914 100%)}
