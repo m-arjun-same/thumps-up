@@ -47,17 +47,15 @@
 
 <!-- ===== SIDEBAR / NAVBAR ===== -->
 <header class="navbar" id="navbar">
-  <div class="navbar__togglebar" id="togglebar" style="--show-p:1;--scroll-p:0">
-    <a class="navbar__logo" href="#top" data-scrollto="#top" aria-label="Thumps Up — home">
-      <span class="navbar__logo-word">THUMPS</span>
-      <span class="navbar__logo-word">UP</span>
-      <svg class="navbar__logo-bolt"><use href="#ic-bolt"/></svg>
+  <div class="top-controls" id="topControls">
+    <a class="top-logo" href="#top" data-scrollto="#top" aria-label="Thumps Up — home">
+      <span>THUMPS UP</span>
+      <svg class="top-logo__bolt"><use href="#ic-bolt"/></svg>
     </a>
-    <button class="navbar__toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
-      <span class="navbar__toggle-line"></span>
-      <span class="navbar__toggle-line"></span>
+    <button class="top-menu-btn" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <span class="top-menu-btn__lines"><span class="navbar__toggle-line"></span><span class="navbar__toggle-line"></span></span>
+      <span class="top-menu-btn__text">Menu</span>
     </button>
-    <span class="navbar__tip">scroll for more</span>
   </div>
 
   <!-- ===== FULL-SCREEN MENU ===== -->
@@ -92,7 +90,7 @@
       <div class="hero__bg">
         <video src="assets/media/hero-storm.mp4" poster="assets/media/poster-hero.jpg" autoplay muted playsinline loop preload="auto"></video>
         <div class="hero__shade"></div>
-        <canvas class="vector-grid" data-color="rgba(206, 31, 26, 0.70)" aria-hidden="true"></canvas>
+        <canvas class="vector-grid" data-color="rgba(147, 197, 255, 0.50)" aria-hidden="true"></canvas>
       </div>
       <h2 class="hero__wordmark split-text" data-anim-delay="0.55">THUMPS UP</h2>
       <div class="hero__box">
@@ -206,7 +204,7 @@
   <!-- ===== COLLECTION ===== -->
   <section class="collection" id="collection">
     <div class="collection__wrapper">
-      <canvas class="vector-grid" data-color="rgba(206, 31, 26, 0.70)" aria-hidden="true"></canvas>
+      <canvas class="vector-grid" data-color="rgba(206, 31, 26, 0.40)" aria-hidden="true"></canvas>
       <header class="collection__header">
         <h2 class="collection__title">The Thumps Up<br>Collection</h2>
         <div class="collection__header-row">
@@ -266,7 +264,7 @@
   <!-- ===== CONTACT ===== -->
   <section class="contact sticky-root" id="contact" data-pin-spacing="2.25" data-pin="1.75">
     <div class="contact__wrapper sticky wipe-flat">
-      <canvas class="vector-grid" data-color="rgba(206, 31, 26, 0.70)" aria-hidden="true"></canvas>
+      <canvas class="vector-grid" data-color="rgba(147, 197, 255, 0.45)" aria-hidden="true"></canvas>
       <div class="contact__list" id="contactList">
         <article class="contact__item contact__item--red is-open" data-band>
           <div class="contact__item-inner">

@@ -28,12 +28,9 @@
   gsap.ticker.lagSmoothing(0);
   lenis.stop(); // released when the preloader exits
 
-  /* sidebar scroll-progress veil (dossier §3.2) */
-  const togglebar = $("#togglebar");
-  lenis.on("scroll", (e) => {
-    const p = e.limit > 0 ? e.scroll / e.limit : 0;
-    togglebar.style.setProperty("--scroll-p", p.toFixed(4));
-  });
+  /* top controls (sidebar removed) — hidden until the preloader exits */
+  const topControls = $("#topControls");
+  if (topControls) gsap.set(topControls, { autoAlpha: 0 });
 
   /* anchor navigation through Lenis */
   function scrollToTarget(sel) {
@@ -320,11 +317,11 @@
     const playTl = gsap.timeline({ paused: true })
       .to(section, { "--play-progress": 1, duration: 0.75, ease: "power3.inOut" }, 0)
       .to(layer, { opacity: 1, duration: 0.75, ease: "power3.inOut" }, 0)
-      .to(togglebar, { "--show-p": 1, duration: 0.75, ease: "power3.inOut" }, 0)
+      .to(topControls, { autoAlpha: 0, duration: 0.75, ease: "power3.inOut" }, 0)
       .eventCallback("onComplete", () => { trailerVideo.play().catch(() => {}); })
       .eventCallback("onReverseComplete", () => {
         try { trailerVideo.pause(); trailerVideo.currentTime = 0; } catch (e) {}
-        gsap.set(togglebar, { "--show-p": 0 });
+        gsap.set(topControls, { autoAlpha: 1 });
       });
     function toggle() {
       playing = !playing;
@@ -542,8 +539,8 @@
         { clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)", duration: 1.5, ease: "power3.inOut" }, 0.55)
         .to(preloader, { autoAlpha: 0, duration: 0.25 }, 1.95);
     }
-    /* app start: sidebar reveal + hero split titles (dossier §3.2/§4.2) */
-    exit.to(togglebar, { "--show-p": 0, duration: 0.75, ease: "power3.out" }, 1.15)
+    /* app start: top controls reveal + hero split titles */
+    exit.fromTo(topControls, { autoAlpha: 0, y: -16 }, { autoAlpha: 1, y: 0, duration: 0.75, ease: "power3.out" }, 1.15)
       .add(() => splitAnims.forEach((tl) => tl.play()), 1.3);
   }
 
