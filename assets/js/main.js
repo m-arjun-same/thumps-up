@@ -176,7 +176,15 @@
     stickyScrollFX($(".hero"), $(".hero__wrapper"), {});
     $$(".trailer").forEach((t, i) =>
       stickyScrollFX(t, $(".trailer__wrapper", t), { wipe: "8", mirror: i % 2 === 1, snap: true }));
-    stickyScrollFX($("#contact"), $(".contact__wrapper"), { wipe: "flat" });
+    /* Contact: NO clip wipe. The flat wipe clipped the wrapper invisible and
+       revealed it bottom-up over ~200vh against the bare body background —
+       a 1.5–2 viewport empty navy stretch after the Collection (Dinesh's
+       screenshot, 2026-11-13; probe-confirmed). The trailers can wipe because
+       the previous section stays pinned behind them; the Collection scrolls
+       away, so Contact instead scrolls in with the flow (wrapper unclipped,
+       CSS default --y1 0%) and pins for its hold span; the footer still
+       wipes in over it. */
+    stickyScrollFX($("#contact"), $(".contact__wrapper"), {});
     stickyScrollFX($(".footer"), $(".footer__wrapper"), { wipe: "footer" });
   } else {
     /* mobile: progress vars only, no wipes (dossier §6) */
