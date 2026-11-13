@@ -203,8 +203,6 @@ main{display:block;position:relative}
   .timezone-bar--static{position:absolute}
 }
 
-/* ---------- Vector grid canvas (dossier §5.2) ---------- */
-.vector-grid{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 
 /* ---------- Hero (dossier §3.3) ---------- */
 .hero__wrapper{background:linear-gradient(155deg,#16307a 0%,#0a1735 55%,#050914 100%)}
