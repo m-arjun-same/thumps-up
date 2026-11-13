@@ -572,3 +572,21 @@ main{display:block;position:relative}
 .cookieconsent__switch.is-locked{opacity:.55}
 
 .collection .timezone-bar{color:#171208}
+
+/* ---------- Mobile fit fixes (390px check, 2026-11-13) ----------
+   Found by screenshot + DOM probe at a true 390px viewport:
+   (1) hero wordmark "VIDEOTHEQUE" at 3.75rem is ~465px wide — last letters
+       ran off the right edge; (2) the hero title's first line sat behind
+       the fixed top pills; (3) contact band titles (nowrap, one row with
+       the label) clipped mid-word — "VISIT U", "SCRE"; (4) menu overlay
+       links at 4.25rem widened their box past the screen, so an opened
+       menu would clip its links. Desktop rules are untouched. */
+@media (max-width:1024px){
+  .hero__wordmark{font-size:2.9rem}
+  .hero__box{padding-top:4.5rem}
+  .contact__content{flex-wrap:wrap;row-gap:.25rem}
+  .contact__title{font-size:2.9rem}
+  .navbar__link{font-size:2.5rem}
+  .navbar__box--left{min-width:0}
+  .navbar__main{min-width:0}
+}
