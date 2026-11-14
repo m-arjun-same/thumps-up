@@ -34,7 +34,7 @@ html{font-size:4.2667vw}
 @media (min-width:1025px){:root{--global-padding:1.25rem}}
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:auto}
+html{scroll-behavior:auto;overflow-x:hidden;overflow-x:clip}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 body{
@@ -43,7 +43,7 @@ body{
   font-family:var(--font-text);
   font-weight:400;
   word-break:keep-all;
-  overflow-x:hidden;
+  overflow-x:hidden;overflow-x:clip;
   -webkit-font-smoothing:antialiased;
 }
 ::selection{background:var(--cream);color:#0e2460}
@@ -589,4 +589,20 @@ main{display:block;position:relative}
   .navbar__link{font-size:2.5rem}
   .navbar__box--left{min-width:0}
   .navbar__main{min-width:0}
+}
+
+/* ---------- Mobile fit round 2 (2026-11-14, Dinesh: still not fitting) ----------
+   Round 1 missed the Collection header: "The Videotheque" is one
+   unbreakable word at 4.25rem — 480px wide in a 366px column at 390px —
+   which stretched the whole document to 492px and let the page scroll
+   SIDEWAYS on a phone (scrollX reached 102). Round 1 also never shot
+   that header. Fixes: title down to 3rem (fits every width <=1024 by
+   the fluid-root math), shelf rows bleed exactly to the screen edges
+   instead of ~5px past them, shelf names can shrink/wrap, and
+   overflow-x:clip on html+body (above) makes sideways scroll
+   impossible even if a decorative element overflows. */
+@media (max-width:1024px){
+  .collection__title{font-size:3rem}
+  .shelf__item{margin:0 -.75rem;width:calc(100% + 1.5rem)}
+  .shelf__name{min-width:0}
 }
