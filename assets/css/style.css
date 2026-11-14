@@ -606,3 +606,16 @@ main{display:block;position:relative}
   .shelf__item{margin:0 -.75rem;width:calc(100% + 1.5rem)}
   .shelf__name{min-width:0}
 }
+
+/* ---------- Mobile fit round 3 — trailers (2026-11-14) ----------
+   Dinesh's own phone screenshots: in all three trailer sections the
+   orange subtitle starts at ~51px from the section top — directly
+   BEHIND the fixed logo/Menu pills ("40,000+ TITLES" is half-covered
+   by the red logo pill) — and the title's tight .85 line-height makes
+   stacked lines touch ("MUSIC ON" / "VHS"). The trailer box is
+   content-height and top-anchored on mobile, so padding-top moves
+   the whole block clear of the pills, same pattern as the hero fix. */
+@media (max-width:1024px){
+  .trailer__box{padding-top:4.75rem}
+  .trailer__title{line-height:.95}
+}
